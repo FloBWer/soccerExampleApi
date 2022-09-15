@@ -18,7 +18,7 @@ class Player
     #[Id]
     #[Column(type: 'integer')]
     #[GeneratedValue(strategy: 'AUTO')]
-    private int $id;
+    private ?int $id;
 
     #[Column(type: 'integer', unique: true)]
     private int $number;
@@ -48,4 +48,76 @@ class Player
     #[ManyToOne(targetEntity: Position::class)]
     #[JoinColumn(name: 'position_id', referencedColumnName: 'id')]
     private Position $position;
+
+    public function __construct(
+        int $number,
+        string $lastName,
+        string $firstName,
+        DateTime $birthDate,
+        int $numberOfGames,
+        int $numberOfGoals,
+        string $pictureUrl,
+        Team $team,
+        Position $position
+    ) {
+        $this->number = $number;
+        $this->lastName = $lastName;
+        $this->firstName = $firstName;
+        $this->birthDate = $birthDate;
+        $this->numberOfGames = $numberOfGames;
+        $this->numberOfGoals = $numberOfGoals;
+        $this->pictureUrl = $pictureUrl;
+        $this->team = $team;
+        $this->position = $position;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getNumber(): int
+    {
+        return $this->number;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function getBirthDate(): DateTime
+    {
+        return $this->birthDate;
+    }
+
+    public function getNumberOfGames(): int
+    {
+        return $this->numberOfGames;
+    }
+
+    public function getNumberOfGoals(): int
+    {
+        return $this->numberOfGoals;
+    }
+
+    public function getPictureUrl(): string
+    {
+        return $this->pictureUrl;
+    }
+
+    public function getTeam(): Team
+    {
+        return $this->team;
+    }
+
+    public function getPosition(): Position
+    {
+        return $this->position;
+    }
 }

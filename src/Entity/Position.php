@@ -15,11 +15,32 @@ class Position
     #[Id]
     #[Column(type: 'integer')]
     #[GeneratedValue(strategy: 'AUTO')]
-    private int $id;
+    private ?int $id;
 
     #[Column(type: 'string')]
     private string $name;
 
     #[Column(name: 'short_name', type: 'string', unique: true)]
     private string $shortName;
+
+    public function __construct(string $name, string $shortName)
+    {
+        $this->name = $name;
+        $this->shortName = $shortName;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getShortName(): string
+    {
+        return $this->shortName;
+    }
 }

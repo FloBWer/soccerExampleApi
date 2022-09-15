@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -20,7 +21,7 @@ class Team
     #[Id]
     #[Column(type: 'integer')]
     #[GeneratedValue(strategy: 'AUTO')]
-    private int $id;
+    private ?int $id;
 
     #[Column(type: 'string')]
     private string $name;
@@ -38,4 +39,50 @@ class Team
     #[ManyToMany(targetEntity: Color::class)]
     #[JoinTable(name: 'team_has_color')]
     private Collection $colors;
+
+    public function __construct(string $name, \DateTime $foundingDate, string $logoUrl, League $league)
+    {
+        $this->name = $name;
+        $this->foundingDate = $foundingDate;
+        $this->logoUrl = $logoUrl;
+        $this->league = $league;
+        $this->colors = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getFoundingDate(): \DateTime
+    {
+        return $this->foundingDate;
+    }
+
+    public function getLogoUrl(): string
+    {
+        return $this->logoUrl;
+    }
+
+    public function getLeague(): League
+    {
+        return $this->league;
+    }
+
+    public function getColors(): Collection
+    {
+        return $this->colors;
+    }
+
+    public function addColor(Color $color): Team
+    {
+        $this->colors->add($color);
+
+        return $this;
+    }
 }
