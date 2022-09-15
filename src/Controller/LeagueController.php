@@ -25,7 +25,7 @@ class LeagueController extends AbstractSoccerApiController
 
         $serializedLeagues = [];
         foreach ($leagues as $league) {
-            $serializedLeagues = $this->leaguesSerializer->serialize($league);
+            $serializedLeagues[] = $this->leaguesSerializer->serialize($league);
         }
 
         return new JsonResponse($serializedLeagues);

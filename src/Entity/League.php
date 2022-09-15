@@ -49,7 +49,7 @@ class League
             'name' => $this->getName(),
             'numberOfTeams' => $this->getNumberOfTeams(),
             'logoUrl' => $this->getLogoUrl(),
-            'colors' => $this->getColors()->map(static fn (Color $color) => $color->toArray()),
+            'colors' => $this->getColors()->map(static fn (Color $color) => $color->toArray())->getValues(),
         ];
     }
 

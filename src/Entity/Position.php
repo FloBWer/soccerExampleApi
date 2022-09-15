@@ -29,6 +29,15 @@ class Position
         $this->shortName = $shortName;
     }
 
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'shortName' => $this->getShortName(),
+        ];
+    }
+
     public function getId(): ?int
     {
         return $this->id;

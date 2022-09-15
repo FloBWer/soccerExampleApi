@@ -71,6 +71,21 @@ class Player
         $this->position = $position;
     }
 
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'firstName' => $this->getFirstName(),
+            'lastName' => $this->getLastName(),
+            'birthDate' => $this->getBirthDate()->format(DATE_ATOM),
+            'numberOfGames' => $this->getNumberOfGames(),
+            'numberOfGoals' => $this->getNumberOfGoals(),
+            'pictureUrl' => $this->getPictureUrl(),
+            'team' => $this->getTeam()->toArray(),
+            'position' => $this->getPosition()->toArray(),
+        ];
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -49,6 +49,17 @@ class Team
         $this->colors = new ArrayCollection();
     }
 
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'foundingDate' => $this->getFoundingDate()->format(DATE_ATOM),
+            'logoUrl' => $this->getLogoUrl(),
+            'league' => $this->getLeague()->toArray(),
+            'colors' => $this->getColors()->map(static fn (Color $color) => $color->toArray())->getValues(),
+        ];
+    }
+
     public function getId(): ?int
     {
         return $this->id;
