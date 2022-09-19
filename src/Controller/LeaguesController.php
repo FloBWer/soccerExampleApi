@@ -64,7 +64,7 @@ class LeaguesController extends AbstractSoccerApiController
         return new JsonResponse($this->leaguesSerializer->serialize($updatedLeague));
     }
 
-    #[Route(path: '/leagues/{leagueId}', name: 'leagues_detail_controller', requirements: ['leagueId' => '\d+'], methods: ['DELETE'])]
+    #[Route(path: '/leagues/{leagueId}', name: 'leagues_delete_controller', requirements: ['leagueId' => '\d+'], methods: ['DELETE'])]
     public function deleteLeague(int $leagueId): JsonResponse
     {
         $leagueToDelete = $this->leaguesService->getLeague($leagueId);

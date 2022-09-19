@@ -30,7 +30,7 @@ class PlayersController extends AbstractSoccerApiController
         return new JsonResponse($serializedPlayers);
     }
 
-    #[Route(path: '/players/{playerId}', name: 'players_detail_controller', requirements: ['leagueId' => '\d+'], methods: ['GET'])]
+    #[Route(path: '/players/{playerId}', name: 'players_detail_controller', requirements: ['playerId' => '\d+'], methods: ['GET'])]
     public function getPlayer(int $playerId): JsonResponse
     {
         $player = $this->playersService->getPlayer($playerId);
@@ -50,7 +50,7 @@ class PlayersController extends AbstractSoccerApiController
         return new JsonResponse($this->playersSerializer->serialize($newPlayer), Response::HTTP_CREATED);
     }
 
-    #[Route(path: '/players/{playerId}', name: 'players_update_controller', requirements: ['leagueId' => '\d+'], methods: ['PUT'])]
+    #[Route(path: '/players/{playerId}', name: 'players_update_controller', requirements: ['playerId' => '\d+'], methods: ['PUT'])]
     public function updatePlayer(Request $request, int $playerId): JsonResponse
     {
         $existingPlayer = $this->playersService->getPlayer($playerId);
@@ -63,7 +63,7 @@ class PlayersController extends AbstractSoccerApiController
         return new JsonResponse($this->playersSerializer->serialize($updatedPlayer));
     }
 
-    #[Route(path: '/players/{playerId}', name: 'players_delete_controller', requirements: ['leagueId' => '\d+'], methods: ['DELETE'])]
+    #[Route(path: '/players/{playerId}', name: 'players_delete_controller', requirements: ['playerId' => '\d+'], methods: ['DELETE'])]
     public function deletePlayer(int $playerId): JsonResponse
     {
         $playerToDelete = $this->playersService->getPlayer($playerId);

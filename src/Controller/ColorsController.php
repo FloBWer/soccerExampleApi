@@ -47,7 +47,7 @@ class ColorsController extends AbstractSoccerApiController
         new JsonResponse($this->colorsSerializer->serialize($newColor), Response::HTTP_CREATED);
     }
 
-    #[Route(path: '/colors/{colorId}', name: 'color_update_controller', requirements: ['leagueId' => '\d+'], methods: ['UPDATE'])]
+    #[Route(path: '/colors/{colorId}', name: 'color_update_controller', requirements: ['colorId' => '\d+'], methods: ['UPDATE'])]
     public function updateColor(Request $request, int $colorId): JsonResponse
     {
         $existingColor = $this->colorsService->getColor($colorId);
@@ -61,7 +61,7 @@ class ColorsController extends AbstractSoccerApiController
 
     }
 
-    #[Route(path: '/colors/{colorId}', name: 'color_delete_controller', requirements: ['leagueId' => '\d+'], methods: ['DELETE'])]
+    #[Route(path: '/colors/{colorId}', name: 'color_delete_controller', requirements: ['colorId' => '\d+'], methods: ['DELETE'])]
     public function deleteColor(int $colorId): JsonResponse
     {
         $colorToDelete = $this->colorsService->getColor($colorId);
