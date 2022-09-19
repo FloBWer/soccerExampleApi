@@ -24,7 +24,7 @@ class PlayersController extends AbstractSoccerApiController
 
         $serializedPlayers = [];
         foreach ($players as $player) {
-            $serializedPlayers[] = $player->toArray();
+            $serializedPlayers[] = $this->playersSerializer->serialize($player);
         }
 
         return new JsonResponse($serializedPlayers);
